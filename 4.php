@@ -1,5 +1,4 @@
 <?php
-//1002
 function order($num, $fl = false){
 //fl - порядок, true - восходящий
 	
