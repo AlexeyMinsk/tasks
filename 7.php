@@ -19,10 +19,11 @@ function getNum($num, $pos){//получить число по порядков�
 
 }
 
-$N = 1234567899;//заданное число
+$N = 1231;//заданное число
 $counter = getExp($N);
 $M;
 $exit = false;
+$numCount = 0;
 
 for($i = 0; $i < $counter; $i++){
 
@@ -31,16 +32,22 @@ for($i = 0; $i < $counter; $i++){
     for($n = $i + 1; $n <= $counter; $n++){
         $t = getNum($N, $n);
         if($M == $t){
-            $exit = true;
-            break;
+            $numCount++;
         }
     }
-    if($exit)
+    if($numCount == 1){
+        $exit = true;
         break;
+    }elseif($numCount > 1){
+        $exit = false;
+        break;
+    }
+    $numCount = 0;
 }
 
-if(!$exit)
-    echo "Все цифры уникальны";
+if($exit)
+    echo "Есть двойное совпадение";
 else
-    echo "Не все цифры уникальны";
+    echo "Нет двойного совпадения";
+
 
