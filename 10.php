@@ -7,7 +7,7 @@ function getExp($num){
     if($num < 10)
         return 0;
 
-    while($num > $i){
+    while($num >= $i){
 
         $i *= 10;
         $counter++;

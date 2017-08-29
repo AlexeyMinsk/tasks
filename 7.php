@@ -1,9 +1,13 @@
 <?php
-function getExp($num){//получить разряд числа
+function getExp($num){//получить разрядность числа
 
     $counter = 0;
     $i = 1;
-    while($num > $i){
+
+    if($num < 10)
+        return 0;
+
+    while($num >= $i){
 
         $i *= 10;
         $counter++;
