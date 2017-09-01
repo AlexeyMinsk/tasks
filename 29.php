@@ -43,8 +43,6 @@ function testValue($n, $k){// проверка на равенство
     elseif( $sum > $k ) {
         $n = combinator($n, $k, $sum);
         testValue($n, $k);
-        //else( $sum < $k )
-        //echo "Нельзя|->";
     }
 }
 
@@ -79,7 +77,7 @@ function combinator($num, $k, $sum){//подбор возможных комби
     if(!$counter)
         return 0;
 
-    $fl = 0;//
+    $fl = 0;//возможная комбинация
 
     for($i = 0; $i <= $counter; $i++){
 
