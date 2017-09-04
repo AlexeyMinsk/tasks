@@ -39,8 +39,8 @@ function getMinElement(array $arrA){
 
 $arrayNum = array(1, -33, 4, 444, 789, 22);
 
-$max = getMaxElement($arrayNum);
-$min = getMinElement($arrayNum);
+$maxArr = getMaxElement($arrayNum);
+$minArr = getMinElement($arrayNum);
 
 for($i = 0; $i < count($arrayNum); $i++){
 
