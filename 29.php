@@ -38,12 +38,17 @@ function testValue($n, $k){// проверка на равенство
 
     $sum = getSum($n);
 
-    if( $sum == $k )
-        echo "Сумма цифр числа $n равна заданному числу|->";
+    if( $sum == $k ) {
+        if ( getExp($n) )
+            echo "Сумма цифр числа $n равна заданному числу|->";
+        else
+            echo "Число $n равно заданному числу|->";
+    }
     elseif( $sum > $k ) {
         $n = combinator($n, $k, $sum);
         testValue($n, $k);
-    }
+    }else
+        echo "Комбинаций не найденно|->";
 }
 
 function deleteNum($num, $pos){//удалить цифру с заданной позиции
