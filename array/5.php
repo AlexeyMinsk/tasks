@@ -1,5 +1,9 @@
 <?php
 $arrA = array(1, 55, 15, 77, 54, -1, 66);
+
+if(sizeof($arrA) < 2)
+    die("Массив содержит менее 2 элементов");
+
 $i = 0;
 $indexMax = 0;
 $indexMin = 0;
