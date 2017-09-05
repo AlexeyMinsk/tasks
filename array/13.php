@@ -10,7 +10,7 @@ function getMaxElement(array $arrA, $exception = null){
 
     while( $i < sizeof($arrA) ){
 
-        if( $arrA[$i] > $max &&  $arrA[$i] != $exception) {
+        if( $arrA[$i] > $max &&  $arrA[$i] !== $exception) {
             $indexMax = $i;
             $max = $arrA[$i];
         }
@@ -31,7 +31,7 @@ function getMinElement(array $arrA, $exception = null){
 
     while( $i < sizeof($arrA) ){
 
-        if( $arrA[$i] < $min &&  $arrA[$i] != $exception) {
+        if( $arrA[$i] < $min &&  $arrA[$i] !== $exception) {
             $indexMin = $i;
             $min = $arrA[$i];
         }
