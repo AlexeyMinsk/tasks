@@ -20,5 +20,6 @@ function computeDerivative($x, array $arrN, array $arrK){
 $arrNum = array(5 ,9, 7);
 $arrK = array(3 ,2, 1);
 $x = 3;
+
 echo compute($x, $arrNum, $arrK), '|',
 computeDerivative($x, $arrNum, $arrK);
