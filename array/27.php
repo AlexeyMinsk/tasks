@@ -1,7 +1,6 @@
 <?php
 function insertElem(array &$arr, $elem){
 
-    $adj = 0;
     $fl = true;
     $arrB = array();
     $size = count($arr);
