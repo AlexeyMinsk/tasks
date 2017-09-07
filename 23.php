@@ -33,27 +33,68 @@ function changeNum(&$num, $pos1, $pos2, $count){//поменять цифры м
     $num = $num - ($num2 * pow(10, $count-$pos2) ) + ($num1 * pow(10, $count-$pos2) );
 }
 
-$N = 98521;//заданное число
-$posMaxNum;
+function deleteNull(&$num){
+
+    $count = getExp($num);
+
+    for($n = 0; $n <= $count; $n++){
+        $x = getNum($num, $n);
+        if(!$x) {
+            $num = deleteNum($num, $n);
+            $count--;
+            $n--;
+        }
+    }
+}
+
+function deleteNum($num, $pos){//удалить цифру с заданной позиции
+
+    $counter = getExp($num);
+
+    if(!$counter)
+        return 0;
+
+    $res = 0;
+    $kor = 0;
+
+    for($i = 0; $i <= $counter; $i++) {
+
+        $x = getNum($num, $i);
+        $kor++;
+
+        if ( $i != $pos) {
+            $res += $x * pow(10, $counter - $kor);
+        }
+        else{
+            $kor--;
+        }
+    }
+    return $res;
+}
+
+$N = 9850210;//заданное число
+deleteNull($N);
 $count = getExp($N);
 
 for($i = 0; $i <= $count; $i++){
 
     $num = getNum($N, $i);
+
     $min = $num;
     $posCurNum = $i;
 
     for($n = $i + 1; $n <= $count; $n++) {
 
         $tempNum = getNum($N, $n);
+
         if($min > $tempNum){
             $min = $tempNum;
-            $posMaxNum = $n;
+            $posMinNum = $n;
         }
     }
 
     if($num > $min){
-        changeNum($N, $i, $posMaxNum, $count);
+        changeNum($N, $i, $posMinNum, $count);
     }
 }
 
