@@ -7,9 +7,9 @@ $fl = true;
 
 for($i = 2; $i <= $numMin; $i++){
 
-    $res1 = $N / $i;
-    $res2 = $M / $i;
-    if( (gettype($res1) == "integer") && (gettype($res2) == "integer") ) {
+    $res1 = $N % $i;
+    $res2 = $M % $i;
+    if( $res1 == 0 && $res2 == 0) {
         echo "Наименьший общий делитель - ", $i;
         $fl = false;
         break;
