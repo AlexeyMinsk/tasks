@@ -70,9 +70,6 @@ function getNewArray(array $arr, $even = true){
 
 $arrA = array(9,88,4,2,1, -1, 55, 777);
 
-/*for($i = 0; $i < count($arrC);$i++)
-    $arrB[] = $arrC[$i];
-*/
 sortArr($arrA);
 insertElem($arrA, 99);
 print_r($arrA);
