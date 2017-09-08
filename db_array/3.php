@@ -1,62 +1,64 @@
 <?php
-function getExp($num){//получить разряд
+function testOrder(array $arr, $ord = true){
 
-    $counter = 0;
+    for($n = 1; $n < count($arr); $n++){
+
+        if($arr[$n] < $arr[$n-1] && $ord)
+            return false;
+        if($arr[$n] > $arr[$n-1] && !$ord)
+            return false;
+    }
+    return true;
+}
+
+function getMaxElement(array $arrA){
+
+    if(!sizeof($arrA))
+        die("Массив пуст");
+
     $i = 1;
+    $max = $arrA[$i];
 
-    if($num < 10)
-        return 0;
+    while( $i < sizeof($arrA) ){
 
-    while($num >= $i){
+        if( $arrA[$i] > $max)
+            $max = $arrA[$i];
 
-        $i *= 10;
-        $counter++;
+        ++$i;
     }
-
-    return $counter - 1;
+    return $max;
 }
 
-function getNum($num, $pos){//получить число по порядковому номеру
+function getMinElement(array $arrA){
 
-    $pos = getExp($num) - $pos;
-    return ( (int)($num / pow(10, $pos)) ) % 10;
-}
+    if(!sizeof($arrA))
+        die("Массив пуст");
 
-function testNum($num){
+    $i = 1;
+    $min = $arrA[$i];
 
-    $checkArr = array(0,1,3,8);
-    $pos = 0;
-    $counter = -1;
-    $size = getExp($num);
+    while( $i < sizeof($arrA) ){
 
-    while($size >= $pos) {
+        if( $arrA[$i] < $min)
+            $min = $arrA[$i];
 
-        $val = getNum($num, $pos);
-
-        for($i = 0; $i < count($checkArr); $i++)
-            if($checkArr[$i] === $val)
-                $counter++;
-
-        $pos++;
+        ++$i;
     }
-
-    if($counter == $size)
-        return true;
-    else
-        return false;
+    return $min;
 }
 
 $db_array = array(
-    array(130, 0, 0, 4),
-    array(4,-5),
+    array(1,2,3,2,4),
+    array(4,-5,6),
     array(7,8,-9),
+    array(7,8,9),
+    array(7,6,1),
 );
-$sum = 0;
 
 for($n = 0; $n < count($db_array); $n++){
-    for($m = 0; $m < count($db_array[$n]); $m++)
-        if(testNum($db_array[$n][$m]) )
-            $sum += $db_array[$n][$m];
-}
 
-echo $sum;
+    if( testOrder($db_array[$n]) || testOrder($db_array[$n], false)){
+        echo "Максимальный элемент в строке ", $n+1,' это ', getMaxElement($db_array[$n]),
+        " минимальный элемент в строке ", $n+1,' это ', getMinElement($db_array[$n]), ' | ';
+    }
+}
