@@ -11,7 +11,6 @@ function unique($num){//проверка на уникальность
                 return false;
         }
     }
-
     return true;
 }
 //заданнные по условиям числа
@@ -31,7 +30,6 @@ for($i = 1000; $i < 10000; $i++) {
                 $count++;
             else
                 break;
-
         }
     }
 
