@@ -13,11 +13,21 @@ function testNum($num, $p){
 $db_array = array(
     array(130, 0, 0, 3, 4),
     array(4,-5, 1, 2, 2),
-    array(2,8,-9, 3, 12),
+    array(2,8,-9, 3, 12)
 );
 $p = 2;
 $sizeLine = count($db_array);
 $sizeColumn = count($db_array[0]);
+/*
+ При условии, что массивы многомерного массива имеют разный рамер,
+подсчёт будет проводиться по самому короткому
+*/
+
+for($i = 1; $i < $sizeLine; $i++){
+
+    if($sizeColumn > count($db_array[$i]) )
+        $sizeColumn = count($db_array[$i]);
+}
 
 for($column = 0; $column < $sizeColumn; $column++){
 
