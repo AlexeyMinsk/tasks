@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>22</title>
+    <title>23</title>
     <style>
         .tbl{
             float:left;
@@ -20,26 +20,18 @@
 </head>
 <body>
 <?php
-function switchColumn(array &$arrA, $column_1, $column_2){
+function getPosition(array $arr){
 
-    if($column_1 == $column_2)
-        return;
+    $arrCounter = array();
 
-    $tempArr = array();
-
-    for($i = 0; $i < count($arrA); $i++) {
-        for($n = 0; $n < count($arrA[$i]); $n++) {
-
-            if($n == $column_1) {
-                $tempArr[$i][$n] = $arrA[$i][$column_2];
-            }elseif($n == $column_2) {
-                $tempArr[$i][$n] = $arrA[$i][$column_1];
-            }else {
-                $tempArr[$i][$n] = $arrA[$i][$n];
-            }
+    for($i = 0; $i < count($arr); $i++){
+        $arrCounter[$i] = 0;
+        for($s = 0; $s < count($arr[$i]); $s++){
+            if($arr[$i][$s] > 0)
+                $arrCounter[$i]++;
         }
     }
-    $arrA = $tempArr;
+    return getPriority($arrCounter);
 }
 
 function sortArr(array &$arr, $sort = true){
@@ -63,20 +55,11 @@ function sortArr(array &$arr, $sort = true){
     }
 }
 
-function switchElem(array &$arr, $elem1, $elem2){
-
-    if($elem1 == $elem2)    return;
-    $temp = $arr[$elem1];
-    $arr[$elem1] = $arr[$elem2];
-    $arr[$elem2] = $temp;
-}
-
 function getPriority(array $arr){
 
     $arrPriority = array();
     $tempArr = $arr;
-
-    sortArr($tempArr);
+    sortArr($tempArr, false);
 
     for($i = 0; $i < count($tempArr); $i++){
         for($s = 0; $s < count($arr); $s++){
@@ -88,6 +71,14 @@ function getPriority(array $arr){
         }
     }
     return $arrPriority;
+}
+
+function switchElem(array &$arr, $elem1, $elem2){
+
+    if($elem1 == $elem2)    return;
+    $temp = $arr[$elem1];
+    $arr[$elem1] = $arr[$elem2];
+    $arr[$elem2] = $temp;
 }
 
 function printTable(array $db_arr, $tableName){
@@ -106,18 +97,19 @@ function printTable(array $db_arr, $tableName){
 
 $db_array = array(
     array(13, 22, 1, 3, 2),
-    array(0, 1, 2, 3, 4),
-    array(2, 8, -9, 3, 12),
+    array(0, 1, -2, 3, 4),
+    array(2, 8, -9, -3, 12),
     array(32, 81, -91, 30, 32),
-    array(24 ,18 , 49, 23, 22)
+    array(24 ,18 , 49, -23, -22)
 );
-$orderArr = getPriority($db_array[0]);
+$temp_arr = array();
 
-for($i = 0; $i < count($db_array[0])/2; $i++)
-    switchColumn($db_array, $orderArr[$i], $i);
+$arrPriority = getPosition($db_array);
+for($i = 0; $i < count($db_array); $i++){
+    $temp_arr[$i] = $db_array[$arrPriority[$i] ];
+}
 
-printTable($db_array, 'Отсортированная');
+printTable($temp_arr, 'Отсортированная');
 ?>
-
 </body>
 </html>
